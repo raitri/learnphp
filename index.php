@@ -1,14 +1,27 @@
 <?php
 
 class Box {
-    public $width;
-    public $height;
-    public $length;
+    private $width;
+    protected $height;
+    private $length;
 
-    public function __construct($w, $h, $l){
+    public function __construct($w=0, $h=0, $l=0)
+    {
         $this->width = $w;
         $this->height = $h;
         $this->length = $l;
+    }
+
+    public function getWidth(){
+        return $this->width;
+    }
+
+    public function setWidth(){
+        if($width > 0 && is_int($width)){
+            $this->width = $width;
+        } else {
+            throw new Exception('you are stupid dumbass');
+        }
     }
 
     public function volume(){
@@ -16,9 +29,25 @@ class Box {
     }
 }
 
-$box1 = new Box(10, 10, 10);
-$box1->width = 10;
-$box2 =clone $box1;
-$box2->width = 20;
-var_dump($box1->width);
-var_dump($box1, $box2);
+class MetalBox extends Box {
+    public $material = 'metal';
+    public $massPerUnit = 2;
+
+    public function changeWidth() {
+        $this->width = 333;
+    }
+
+    public function mass() {
+        return $this->volume() * $this->massPerUnit;
+    }
+}
+
+$metalBox = new MetalBox(2,3,4);
+//$metalBox->width = 'Cool value';
+$metalBox->setWidth(67);
+//$metalBox->width = 123;
+//$metalBox->changeWidth();
+//var_dump($metalBox->width);
+var_dump($metalBox);
+var_dump($metalBox->volume());
+var_dump($metalBox->mass());
