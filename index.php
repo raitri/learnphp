@@ -1,55 +1,58 @@
 <?php
 
-for($i=0;$i<10;$i++){
-    var_dump($i);
+function hello(){
+    var_dump('Hello');
 }
 
-for($i=10;$i<0;$i--){
-    var_dump($i);
+hello();
+hello();
+hello();
+
+function helloName($name='Unknown'){
+    var_dump('Hello' . $name);
 }
 
-for($i=1;$i<1_000_000;$i*=2){
-    var_dump($i);
-}
-$time = time();
-$i = 0;
-while(time() < $time+1){
-    var_dump(time());
-    $i++;
-}
-var_dump($i);
+helloName('Kaspar');
+helloName('Martin');
+helloName();
 
-$i = 10;
-while($i < 10){
-    var_dump('WHILE');
-}
-do {
-    var_dump('DO');
-} while($i < 10);
-
-$array = [1,2,3];
-
-foreach($array as $key=>$value){
-    var_dump($key, $value);
+function helloNameAndAge($name='Unknown', $age){
+    var_dump("Hello $name and you are $age years old");
 }
 
-foreach(array_keys($array) as $value){
-    var_dump($value);
+helloNameAndAge('Kaspar', 32);
+helloNameAndAge('Martin', 5);
+
+function stuff(...$args) {
+    var_dump(...$args);
 }
 
-$a = 1;
-$b = &$a;
-$b = 2;
-var_dump($a);
+stuff(1, 2, 3, 4);
+stuff(1, 2, 3, 4, 5, 6, 7);
 
-foreach($array as $value) {
-    $value *= 2;
+function sum($a, $b){
+    return $a+$b;
+    var_dump('gkjfkjfdkjgfdjl');
 }
 
-var_dump($array);
+$answer = sum(1,5);
+var_dump($answer);
 
-foreach($array as &$value){
-    $value *= 2;
+function biggerOrSmaller($a){
+    if($a > 10){
+        return 'bigger';
+    }
+    return 'smaller';
 }
 
-var_dump($array);
+var_dump(biggerOrSmaller(15));
+var_dump(biggerOrSmaller(5));
+
+function recursive($i){
+    if($i < 10){
+        var_dump($i);
+        recursive($i+1);
+    }
+}
+
+recursive(0);
