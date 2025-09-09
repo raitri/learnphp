@@ -1,12 +1,25 @@
 <?php
+class Cat {
+    use Colorful;
+}
 
 class Box {
+    use Colorful;
     private $width;
     protected $height;
     private $length;
 
+    public static $count = 0;
+
+    
+    public static function test(){
+        //var_dump($this->width);
+        var_dump(static::class);
+    }
+
     public function __construct($w=0, $h=0, $l=0)
     {
+        self::$count++;
         $this->width = $w;
         $this->height = $h;
         $this->length = $l;
@@ -42,12 +55,30 @@ class MetalBox extends Box {
     }
 }
 
+trait Colorful {
+    private $color;
+
+    public function setColor($color){
+        $this->color = $color;
+    }
+    public function getColor(){
+        return $this->color;
+    }
+}
+
 $metalBox = new MetalBox(2,3,4);
+
+$box2 = new Box(2,4,5);
+Box::test();
+MetalBox::test();
+var_dump(Box::$count, Box::$count);
+
 //$metalBox->width = 'Cool value';
 $metalBox->setWidth(67);
 //$metalBox->width = 123;
 //$metalBox->changeWidth();
 //var_dump($metalBox->width);
+
 var_dump($metalBox);
 var_dump($metalBox->volume());
 var_dump($metalBox->mass());
