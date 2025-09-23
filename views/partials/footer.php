@@ -2,7 +2,7 @@
       <p>
         Blog template built for
         <a href="https://getbootstrap.com/">Bootstrap</a> by
-        <a href="https://x.com/mdo">@mdo</a>.
+        <a href="https://twitter.com/mdo">@mdo</a>.
       </p>
       <p class="mb-0"><a href="#">Back to top</a></p>
     </footer>
