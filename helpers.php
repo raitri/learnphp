@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 function dump(...$args) {
     echo '<pre>';
     var_dump(...$args);
@@ -14,4 +16,15 @@ function dd(...$args) {
 function view($viewName, $variables=[]) {
     extract($variables);
     include __DIR__ . "/views/$viewName.php";
+}
+
+function redirect($path) {
+    header("Location: $path");
+}
+
+function auth() {
+    if(isset($_SESSION['userID'])) {
+        return User::find($_SESSION['userID']);
+    }
+    return false;
 }
