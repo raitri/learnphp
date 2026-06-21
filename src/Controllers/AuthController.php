@@ -28,13 +28,13 @@ class AuthController
     }
 
     public function login() {
-        dump($_POST);
         $user = User::where('email', $_POST['email'])[0] ?? null;
         if(!$user || !password_verify($_POST['password'], $user->password)) {
             return redirect('/login');
         }
         $_SESSION['userID'] = $user->id;
         redirect('/');
+        dump($_POST);
     }
 
     public function logout() {
